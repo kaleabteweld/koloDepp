@@ -1,0 +1,183 @@
+body{
+    height: 100vh;
+    background-color: rgb(230, 230, 230) !important;
+    
+}
+@media all and (max-width: 500px) { 
+    #a{
+        width: 100% !important;
+        padding: 20px !important;
+        border: transparent !important;
+    }
+    #nav > #home{
+        background-color: darkgrey !important;
+        border-radius: 11rem; 
+    }
+    #a #other{
+
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    #a #other > button{
+
+        flex: 1;
+        margin-top: 10px;
+    }
+    #nav{
+        margin-bottom: 5vh !important;
+    }
+    #mask #text{
+        max-width: 300px !important;
+    }
+}
+
+#Head{
+    position: relative;
+    height: 50vh;
+    width: 100%;
+}
+#mask{
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    z-index: 1;
+
+    background: rgba(79, 80, 80, 0.5);
+
+}
+/* head */
+#head{
+    height: 100%;
+    width: 100%;
+
+    background-image: url('/koloDepp/IMG/creative-space-desk-office-3841057.jpg');
+    background-position: center;
+    background-size: 100% 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    z-index: 0;
+    
+}
+
+#mask #nav{
+
+
+    border-radius: 30px;
+    width: 80vw;
+
+
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+    background-color: rgb(230, 230, 230) !important;
+}
+
+/* nav text */
+#mask #nav > a{
+
+    font-weight: bolder;
+    font-size: large;
+}
+#mask #nav #navbarResponsive a{   
+
+    font-weight: bolder;
+    font-size: small;
+}
+#mask #text{
+
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    /* margin-top: 34px; */
+
+}
+#mask #text > h2{   
+
+    font-weight: bolder;
+    font-size: x-large;
+    color: whitesmoke;
+    text-align: center;
+}
+#mask #text > p{   
+
+    font-weight: bolder;
+    font-size: small;
+    color: whitesmoke;
+}
+
+
+
+
+/* main */
+/* a or thr body */
+#a{
+
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: auto;
+
+    width: 500px;
+
+    padding: 40px;
+    
+
+    border-radius: 20px;
+
+}
+
+
+/* form */
+#a #form{
+
+    display: flex;
+    flex-direction: column;
+
+}
+#a #form .form-group{
+
+    display: flex;
+    flex-direction: column;
+    
+}
+#a #form .form-group label{
+
+    align-self: center; 
+    font-weight: bolder;
+    color: black;
+}
+#a #form .form-group input{
+
+    border-radius: 11rem;   
+    background-color: #1e1e1e !important;
+    color: #2E8fa2 !important;
+}
+#a #form .form-group textarea{
+
+    border-radius: 12px;   
+    background-color: #1e1e1e !important;
+    color: #2E8fa2 !important;
+}
+
+
+
+/* other */
+
+#a #form  > .form-group .invalid-feedback > p{
+    margin: 0px;
+    font-weight: bolder;
+}
+#a #form .T > .form-group .invalid-feedback > p{
+    margin: 0px;
+    font-weight: bolder;
+}
+
+

@@ -1,0 +1,342 @@
+Stacking and queuing with lists
+Stacks and queues are concepts that describe how items get added to and removed from
+lists. Stacks and queues are not Python objects, but you can write code in which a list
+behaves like a stack or a queue.
+A stack is like a spring-loaded plate dispenser where the last item on is the first item off
+(this is also called "last in, first out" order, which is inscribed in the Great Book of Geeky
+Acronyms as "LIFO"). A queue, as folks familiar with British English know, is like a line
+at a store checkout counter: The first person in is the first served (also called "first in, first
+out," or "FIFO").
+Adding items to a stack
+To add an item to the top of a stack, use append().
+This example puts six plates on the pile:
+>>> plates = []
+>>> for p in range(6):
+... plates.append(p)
+...
+>>> plates
+124
+http://ESiti.in/forum & http://drive.esiti.in
+[0, 1, 2, 3, 4, 5]
+Retrieving items from a stack
+To retrieve an item from the top of a stack, use pop() without an argument (so it defaults
+to the last item in the list).
+To retrieve all the items, use pop() in a while loop. Get the plates off the pile, last-on,
+first-off, like this:
+>>> while plates:
+... plates.pop()
+...
+54
+32
+10
+Queuing up
+To use a list as a queue to process items "in the order in which they were received"
+(anyone who has tried to talk to a large company on the telephone will be familiar with
+that phrase), follow these steps:
+1. Use append() to add an item to the end of the queue.
+In the following example, we create an empty list and then append six callers to it:
+>>> callers = []
+>>> for c in range(6):
+... callers.append(c)
+...
+>>> callers
+[0, 1, 2, 3, 4, 5]
+2. Use pop(0) in a while loop to retrieve an item from the front of the queue,
+like this:
+3. >>> while callers:
+4. ... callers.pop(0)
+5. ...
+6. 0
+7. 1
+8. 2
+9. 3
+10.4
+11.5
+Warning To avoid performance problems, don't use pop(0) with a large list (more
+than about 100 elements).
+125
+http://ESiti.in/forum & http://drive.esiti.in
+Taking Tuples in Hand
+This section describes some ways to work with tuples. We cover converting other objects
+to tuples, several ways of creating tuples, using tuples to swap values, and efficiently
+giving names to individual items in tuples.
+Converting another object to a tuple
+To convert another iterable object to a tuple, use the tuple() function:
+>>> mylist = [1, 2, 3]
+>>> tuple(mylist)
+(1, 2, 3)
+REMEMBER If you convert a list to a tuple, remember that the new tuple cannot be
+changed.
+Tuple packing
+If you type some names separated by commas, you create a tuple. This is called tuple
+packing. It works on either side of an assignment statement.
+The following example creates a tuple containing two strings:
+>>> q = 'blah, blah, blah'
+>>> r = 'GINGER'
+>>> what_they_hear = q, r
+>>> print what_they_hear
+('blah, blah, blah', 'GINGER')
+To create a tuple containing more than two items, just use multiple comma operators.
+This example creates a tuple containing four strings.
+>>> q, r, q, r
+('blah, blah, blah', 'GINGER', 'blah, blah, blah', 'GINGER')
+Tuple unpacking
+Unpacking a tuple means giving a different name to each element of the tuple.
+Tuple unpacking is useful because many functions in Python, such as the zip() function
+described in the previous "Building lists incrementally" section, return tuples. With tuple
+unpacking, you can easily get at the individual items in these tuples.
+To unpack a tuple, just assign multiple names on a single line. Put the names you want to
+unpack into on the left side of the assignment statement and put the tuple on the right
+side. You need one name for each item in the tuple.
+126
+http://ESiti.in/forum & http://drive.esiti.in
+The following example unpacks a tuple consisting of three lists:
+>>> x = [('rock crushes', 'scissors'), ('paper covers', 'rock'),
+('scissors
+cut', 'paper')]
+>>> rock, paper, scissors = x
+>>> print rock
+('rock crushes', 'scissors')
+
+this is deep
+
+  
+
+Using a tuple to swap values
+Because of the special way assignments work with tuples, tuples are the Pythonic way of
+swapping values.
+This example swaps the values associated with two names:
+>>> q = 'blah, blah, blah'
+>>> r = 'GINGER'
+>>> q, r
+('blah, blah, blah', 'GINGER')
+>>> q, r = r, q
+>>> q, r
+('GINGER', 'blah, blah, blah')
+127
+http://ESiti.in/forum & http://drive.esiti.in
+Chapter 9: Diving into Dictionaries
+Overview
+In this chapter, we discuss dictionaries (dicts for short) and sets, two data types that store
+multiple data elements. Here are some of the things you can discover in this chapter:
+· What dictionaries and sets are and how they differ from sequences
+· Some of the most useful dictionary tools and set operations
+· How to convert other types of data into dictionaries and sets
+Dictionaries are useful in the following general and specific circumstances:
+· When you need random access to elements.
+· When you want to focus on uniqueness.
+But consider using sets if you are using Python 2.3 or later. See "Setting Them
+Up," later in this chapter.
+· For mapping several spellings of a term to a preferred spelling.
+· For using a key to find a function to call (known as a dispatch table).
+· For looking up zip codes or bank account numbers.
+· For working with numeric indexes with only a few noncontiguous keys, when you
+don't need to use slicing.
+TECHNICAL
+STUFF
+Data that fits the preceding description is called sparse data.
+You can also use a list in this case, but a dict is more
+memory-efficient, which often makes things faster.
+Defining the Dictionary
+Here's how dictionaries (dicts) compare and contrast with other Python data types:
+· Dictionaries are a container type that stores data, like lists and tuples.
+· Dictionaries are a mapping data type — indexed by keys.
+A dictionary's elements (the items it contains) are key:value pairs. In contrast, lists
+and tuples store data by using numeric indexes (they are sequence data types) and
+support indexing and slicing.
+· Dictionaries are mutable.
+128
+http://ESiti.in/forum & http://drive.esiti.in
+That means a dictionary can be modified in place—you don't have to create a
+copy of it to modify it (as you do with strings and tuples).
+· However, a dict's keys must be immutable.
+Creating a dictionary
+The simplest dictionary is a pair of braces ({}), which defines an empty dict.
+REMEMBER To create a dictionary with some data in it, follow these steps:
+1. Type a left brace, a key, a colon, and a value (the information
+you want to associate with the key), like this:
+2. {"parrot": "Pining for fjords"
+The key can be any immutable data type, such as a string or
+integer. Most keys are strings. The value can be any data type.
+3. For each additional element in the dictionary, type a comma to
+separate it from the previous value and then type another key,
+a colon, and a value:
+4. {"parrot": "Pining for fjords", "Polly": "Ex-parrot"
+5. Tip Repeat Step 2 for each element you want to add.To end
+the dictionary, type a right brace: }
+If you added two elements, your dictionary looks something like
+this:
+
+  
+
+{"parrot": "Pining for fjords", "Polly": "Ex-parrot")
+TECHNICAL
+STUFF
+Hash strings or hash browns?
+Some other languages have dictionary structures; they are called
+things like hashes, associative memories, or associative arrays. We
+think dictionaryis a friendlier term.
+Dict keys must be immutable because Python associates them with a
+unique number called a hash. A hash value (or hash) is historically a
+number generated from a string of text. Because the number and
+string pair are unique, hashes prevent problems that might occur if
+two different objects have the same value.
+Hashes are used for space-efficient storage, for security and
+cryptography, and so on. Another benefit of hashing is that after the
+hash is computed, keys can be looked up directly—there's no need
+for the computer to search through a whole list of keys. (In human
+terms, hashes help a computer be smart in the same way a human is
+129
+http://ESiti.in/forum & http://drive.esiti.in
+smart when she knows to jump to the end of a physical dictionary to
+look up a term that starts with Z.) In Python, this feature makes
+dictionaries very fast.
+In Python, most immutable objects have a hash, and the attributes of
+all namespace objects are stored in dictionaries.
+TECHNICAL
+STUFF
+Some details about dictionary keys:
+· Keys must be an immutable data type—for example, a string,
+integer, or tuple.
+· If you use a tuple as a key, the tuple cannot have any mutable
+elements.
+For example, you can't use a tuple that contains a list.
+· You can type a key directly into the dictionary, or you can
+type the name of an object, like this:
+· >>> x = "mydictkey"
+· >>> mydict = {x: "mydictvalue"}
+Order in the dict
+Python doesn't store dictionary elements in any particular order. If you enter elements in
+one order, they may be stored in another (essentially random) order inside Python. Here's
+an example:
+>>> lumberjack = {'sleep': "All night", 'work': "All day"}
+>>> lumberjack
+{'work': 'All day', 'sleep': 'All night'}
+The steps to make a sorted list of dictionary keys depend on your Python version.
+Python 2.4 and later
+If you have Python 2.4 or later, follow these steps to get a sorted (usually alphanumeric)
+list of the keys of a dictionary:
+1. Type a list name and = sorted, followed by the name of your dict in
+parentheses, like this:
+2. >>> sorted_keys = sorted(lumberjack)
+3. To see the sorted list of keys, type the name of the list.
+4. >>> sorted_keys
+5. ['sleep', 'work']
+130
+
+  
+
+http://ESiti.in/forum & http://drive.esiti.in
+Earlier versions
+If you have Python 2.3 or earlier, follow these steps to get a sorted list of the keys of a
+dictionary:
+1. Type a name, an = sign, the name of your dict, and .keys(), like so:
+2. >>> list_of_keys = lumberjack.keys()
+3. Use the sort() method to sort the list by typing this on the next line,
+substituting the name you created in Step 1 for list_of_keys:
+4. >>> list_of_keys.sort()
+5. Type the list name again to see the sorted list of keys, like this:
+6. >>> list_of_keys
+7. ['sleep', 'work']
+Warning Don't try to give a name to the result of list_of_keys.sort(). The sort()
+method changes the list in place but returns None, not a list (to find out more
+about list methods and what they return, see Chapter 8).
+Doodling Around with Dicts
+This section describes some of the common tasks you can do with dicts, such as storing,
+extracting, adding, deleting, and searching for keys and values.
+Popular dict operations
+The main operations for a dictionary are storing a key and its associated value and using
+the key to extract the value.
+Storing a value
+To store a key:value pair in an existing dictionary, follow these steps:
+1. Type the name of the dict and a key in square brackets, like this:
+2. >>> mydict['dracula']
+REMEMBER The key can be new or it can be a key that's already in the
+dictionary. If you use an existing key, the new value replaces the
+old one.
+3. Type = and the value you want to store.
+Your line of code might look like this:
+>>> mydict['dracula'] = 'stoker'
+The following example code creates a dictionary and then creates a new key, 'dracula',
+and gives it the value 'stoker':
+>>> mydict = {'jabberwocky': 'carroll', 'sherlock holmes': 'doyle'}
+>>> mydict['dracula'] = 'stoker'
+131
+http://ESiti.in/forum & http://drive.esiti.in
+>>> mydict
+{'jabberwocky': 'carroll', 'dracula': 'stoker', 'sherlock holmes':
+'doyle'}
+Here, the existing key 'dracula' is given a new value, 'oldman':
+>>> mydict['dracula'] = 'oldman'
+>>> mydict
+{'jabberwocky': 'carroll', 'dracula': 'oldman', 'sherlock holmes':
+'doyle'}
+Extracting a value
+There are two ways of extracting a value based on a dictionary key. The best option
+depends on a couple of factors:
+· If you're certain the key is in the dictionary, or if you want to raise a KeyError
+exception when the key is not in the dictionary, use the square brackets syntax.
+· If many of the keys you're searching for aren't in the dictionary, or if you want
+Python to return a value you specify rather than raise an exception when keys
+aren't found, use the get() method.
+To raise an exception on failure
+If you want to raise an exception if the key you're searching for doesn't exist, type the
+name of the dict followed by a key in square brackets, like this:
+>>> mydict['jane eyre']
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+KeyError: 'jane eyre'
+To return a value you specify on failure
+To return a default value if the key doesn't exist, follow these steps:
+1. Type the name of the dict, a dot, get(, and a key.
+Your code might look like this:
+>>> mydict.get('jane eyre'
+2. (Optional) Type a comma and a string you want to return if the key doesn't
+exist.
+If you don't specify a string, the default value None is returned.
+>>> mydict.get('jane eyre', 'key not found'
+132
+http://ESiti.in/forum & http://drive.esiti.in
+3. End the line by typing a right parenthesis: )
+Your completed line of code will look something like this if the key doesn't exist:
+>>> mydict.get('jane eyre', 'key not found')
+'key not found'
+Finding out about dict methods
+Dictionaries come with built-in methods that allow you to perform the following tasks:
+· Retrieve items from dicts by using items(), keys(), and values() methods.
+· Use dicts in loops with iterkeys(), itervalues(), and iteritems() methods.
+· Test whether a key is in a dict by using the in keyword.
+· Delete items from dicts by using the del keyword and the popitem() and pop()
+methods.
+· Make shallow copies of dicts by using the copy() method.
+· Add items to dicts by using the setdefault() method.
+Retrieving items from dicts
+The keys(), values(), and items() methods are good for list-processing operations
+using the contents of dictionaries. The pop() and popitem() methods retrieve and delete
+things at the same time, so they're good for processing a temporary dictionary you don't
+need to keep or for processing items one at a time until there aren't any more.
+items()
+
+  
+
+
+The items() method retrieves all the key:value pairs in a dictionary and returns them as
+a list of tuples. Each key:value pair is a tuple.
+To retrieve all the items in a dictionary, type the name of the dictionary, a dot, and
+items():
+>>> mydict = {'bed price': '800 pounds', 'bed length': '2 feet long'}
+>>> print mydict.items()
+[('bed length', '2 feet long'), ('bed price', '800 pounds')]
+keys()
+The keys() method retrieves all the keys in the dictionary. It returns a list, as shown
+here:
+>>> print mydict.keys()
+['bed length', 'bed price']
+values()
+133
+http://ESiti.in/forum & http://drive.esiti.in
+The values() method retrieves all the values in the dictionary. It returns a list, as shown
+here:
+>>> print mydict.values()
+['2 foot long', '800 pounds']
+

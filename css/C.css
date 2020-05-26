@@ -1,0 +1,181 @@
+.con{
+
+    height: 100vh;
+
+
+    display: flex;
+    flex-direction: column;
+
+    /* background-color: rgb(230, 230, 230); */
+    /* #cbc2c5; */
+    /* background-color: #676c72; */
+    background-color: #2b2b2c;
+
+}
+
+@media all and (max-width: 500px) { 
+
+    .con #nav > p{
+
+        font-size: medium !important;
+
+    }
+    .con  #nav{
+        height: 100px !important;
+    }
+
+}
+
+/* nav */
+.con  #nav{
+
+    border-radius: 11rem;
+    width: 75vw;
+    height: 60px;
+
+
+
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 30px;
+
+    /* background-color: white !important; */
+    background-color: rgb(230, 230, 230);
+
+    display: flex;
+
+
+}
+/* img */
+.con #nav > img{
+
+    border-radius: 11rem;
+
+    width:50px; 
+    height:50px;
+
+    margin-top: auto;
+    margin-bottom: auto;
+
+    margin-left: 6px;
+
+}
+/* title */
+.con #nav > p{
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: x-large;
+    font-weight: bolder;
+
+    margin-top: auto;
+    margin-bottom: auto;
+
+
+}
+.con #nav .view{
+
+    height: 20px;
+    width: 20px;
+    border-radius: 11rem;
+
+    margin: auto;
+    margin-right: 9px;
+    margin-left: 0;
+}
+.con #nav .colpes{
+
+    height: 20px;
+    width: 20px;
+
+    margin: auto;
+    margin-right: 9px;
+    margin-left: 0;
+
+    border-radius: 11rem;
+    background-color: transparent;
+    color: #2b2b2cbd;
+}
+
+
+
+
+/* main */
+.con #main{
+    
+    height: 85%;
+    /* border-top: solid wheat; */
+}
+
+/* controll */
+.con #main #controll{
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
+    /* height: 10%; */
+
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+
+
+    width: 100%;
+
+
+}
+.con #main #controll > button{
+
+    /* border-radius: 11rem; */
+    margin-left: 10px;
+    background: transparent;
+    color: wheat;
+    border: solid 1px wheat;
+
+}
+
+
+
+/* railway */
+.con #main #railway{
+    height: 90%;
+}
+.con #main #railway #train{
+    height: 90%;
+    
+    /* background-color: rgb(230, 230, 230); */
+    /* background-color: #cbc2c5 !important;
+    border: solid wheat; */
+    border-radius: 10px;
+    
+    padding: 10px;
+
+    display: flex;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    
+}
+.con #main #railway #train #raw{
+
+    height: 100%;
+    min-width: 100%;
+
+    flex: 1;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    position: relative;
+
+    color: wheat;
+    font-size: medium;
+    font-weight:lighter;
+
+
+}

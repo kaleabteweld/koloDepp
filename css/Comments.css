@@ -1,0 +1,193 @@
+@media all and (max-width: 500px) { 
+
+
+    #comments #input > form .form-group > input{
+    
+        height: 40px;
+    
+    }
+    #comments #input > form .T {
+
+        display: flex;
+        flex-direction: column !important;
+        justify-content: center !important;
+        width: 100% !important;
+    
+    }
+    #comments #input > form .T .form-group > input{
+    
+    
+        width: 100% !important;
+
+    
+    }
+    #comments #input > form .T .form-group{
+    
+    
+        width: 100% !important;
+
+    
+    }
+    #comments #input{
+
+        width: 100% !important;
+    }
+}
+#comments{
+
+    height: 100vh;
+    background-color: rgb(230, 230, 230);
+    margin-top: 29px !important;
+}
+
+
+/* output */
+#comments #output{
+
+    height: 65%; 
+    max-height: 65%; 
+    width: 100%; 
+
+    margin-bottom: 30px;
+   
+
+    display: flex;
+    flex-direction: column;
+    
+    overflow-y: scroll;
+
+    background-color: #393939;
+}
+#comments #output #text_msg{
+
+    width: auto;
+    max-width: 100%;
+
+    margin-top: 10px;
+
+}
+#comments #output #text_msg > img{
+    
+    border-radius: 11rem;
+
+    width:50px; 
+    height:50px;
+
+    border: solid cadetblue;
+
+
+}
+#comments #output #text_msg >  #msg {
+     
+    margin-left: 10px;
+    background-color:  #007bff;
+
+    border-radius: 21px;
+    max-width: 80%;
+    padding: 6px;
+
+    color: white;
+    
+}
+#comments #output #text_msg >  #msg #name{
+
+    font-weight: bolder;
+    font-size: large;
+}
+#comments #output #text_msg >  #msg #p{
+
+}
+
+
+/* class for mo and other text*/
+.other{
+
+    display: flex !important;
+    justify-content: flex-start !important;
+}
+.me{
+
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    margin-left: auto;
+    margin-right: 0;
+    
+
+    
+}
+.me > img{
+    margin-top: auto;
+}
+.me > #msg {
+     
+    margin-right: 10px;
+}
+.me > #msg #name{
+
+    padding-right: 14px;
+    text-align: right;
+}
+
+
+
+/* INPUT */
+
+#comments #input{
+
+    width: 60%;
+    height: fit-content;
+
+
+  
+}
+#comments #input > #form{
+    
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    /* flex: 1; */
+
+}
+
+#comments #input > #form .T {
+
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+
+}
+
+#comments #input > #form .T .form-group{
+    
+    width: 100%;
+
+}
+#comments #input > #form .T .form-group > input{
+    
+    border-radius: 11rem; 
+    background-color: #393939; 
+    color: #f3dd53; 
+
+    width: 100% !important;
+    margin-right: 10px;
+
+}
+#comments #input > #form .T .form-group > textarea{
+    
+    display: block;
+
+    background-color: #393939; 
+    color: #f3dd53; 
+
+    width: 100%;
+
+}
+#comments #input > #form > button{
+    
+    border-radius: 11rem; 
+
+}
+

@@ -1,0 +1,702 @@
+
+KKKKKIIIINNNNGGG JJJOOOFFFEEERRRYYY  IISSSS DEEEAADD 
+
+
+
+Manipulating Sequence Objects
+The following sections describe how to compare, combine, and search the contents of
+lists, tuples, and other sequence objects.
+Comparing sequence objects
+Sequence objects such as lists can be compared to other objects of the same data type. A
+comparison tells you whether the objects are equal or whether one is smaller than the
+other. Here's how it works:
+· The first items of each sequence are compared, and then the second items, and so
+on.
+· If an item inside a sequence is itself a sequence, then each of its items is
+compared against the item of the same number in the other sequence.
+· If all items of two sequences are equal, the sequences are equal.
+· If sequence 1 is the same as the beginning of sequence 2, sequence 1 is smaller
+(lesser).
+· Strings are compared based on the ASCII order of their characters. Chapter 6 has
+more information about character order.
+Table 8-1 shows the results of comparisons between sequences.
+Table 8-1: Comparisons between Sequences
+Open table as spreadsheet
+Comparison Reason
+(1, 2, 3) < (1, 2, 4), [1, 2,3] < [1, 2, 4]
+3 is less than 4
+
+'ABC' < 'C' < 'Pascal' <
+'Python'
+ASCII order of characters
+(1, 2, 4) > (1, 2, 3, 4), (1,
+2) < (1, 2, -1)
+First sequence is the same as the beginning of
+second sequence
+(1, 2, 3) == (1.0, 2.0, 3.0) Integers equal their float equivalents
+(1, 2, ('aa', 'ab')) < (1, 2,
+('abc', 'a'), 4)
+Alphabetical order of characters in sub-sequence
+(‘aa’ is smaller than ‘abc’)
+If you compare objects of different types, the types are ordered alphabetically by their
+names: Lists are smaller than strings, which are smaller than tuples. The rules for
+comparing objects of different types may change in future versions of Python.
+112
+http://ESiti.in/forum & http://drive.esiti.in
+Operating on sequence objects
+The following operators work on lists and tuples. Most of these operators also work on
+other data types:
+· Addition (+): Concatenates the contents of lists together to form a new list, or
+concatenates the contents of tuples together to form a new tuple. (You can't
+concatenate a list and a tuple.)
+· >>> [1, 2, 3] + [2, 4]
+· [1, 2, 3, 2, 4]
+· Sequence multiplication (*): Repeats the contents of a list or a tuple.
+· Augmented assignment (+= and *=): Simultaneously concatenates and assigns or
+repeats and assigns. The statement mylist += newlist is the same as mylist =
+mylist + newlist. The former works slightly faster and is easier to read.
+· Comparison (< >, ==, !=): Tests whether the contents of two or more lists or two
+or more tuples are the same.
+· Contents test (in): The keyword in determines whether a list or tuple contains
+the given element and returns True or False, as shown here:
+· >>> phone_sounds = ('beep', 'ring', 'flight of the bumblebee')
+· >>> y = 'beep' in phone_sounds
+· >>> y
+· True
+Listcraft: Methods, Indexes, and Slices
+In this section we describe important ways you can work with lists. You can turn other
+data into lists, count items in lists, sort lists in various orders, and use indexing and
+slicing to change, add, delete, and move individual list items.
+
+
+this is pl
+   
+
+Functions that work with or create lists
+The list() function creates a copy of a list. It also turns any other sequence object or
+iterable into a list. (An iterable is an object whose elements can be retrieved one at a
+time.) This example turns a tuple into a list:
+>>> mytuple = ('apple', 'orange', 'pear')
+>>> mylist = list(mytuple)
+>>> mylist
+['apple', 'orange', 'pear']
+If you feed a string to the list() function, it makes a separate list item out of each
+character, as in this example.
+>>> mystring = "Boo!"
+>>> list(mystring)
+113
+http://ESiti.in/forum & http://drive.esiti.in
+['B', 'o', 'o', '!']
+To find out the number of elements in a list, use the len() function (it also works on
+other data types).
+>>> len(mylist)
+3
+Methods of lists
+A method is like a function except that it "belongs" with a particular object, and when
+you call it, you qualify it with the name of the object. The method names are attributes of
+the object.
+List method syntax
+To call a list method, type the list name, a dot, the method name, and parentheses. In the
+parentheses, pass any arguments the method needs. (Some methods don't require or use
+arguments.) Here's an example:
+list_name.method_name(arguments)
+The most popular list methods
+The following are some of the most frequently used list methods:
+· To add an item to the end of a list, use the append() method. This method
+changes the list in place. It returns None.
+This example adds the string 'apple' to a list:
+basket = ['apple', 'banana', 'orange']
+basket.append('apple')
+· To find out the number of times a value occurs in a list, use the count( value )
+method.
+This example counts the number of times the string 'apple' appears.
+>>> basket.count('apple')
+2
+· To add to a list the contents of another sequence object or iterable (an object
+whose elements can be retrieved one at a time), use the extend() method. If the
+iterable is a string, each character is added individually.
+This example adds each character of the string 'pear'.
+114
+http://ESiti.in/forum & http://drive.esiti.in
+>>> x = ['apple', 'apple', 'banana', 'orange']
+>>> x.extend('pear')
+>>> x
+['apple', 'apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· To delete the first occurrence of an item in a list, use the remove() method. It
+raises a ValueError if the item isn't found.
+This example removes the first 'apple' string.
+>>> x.remove('apple')
+>>> x
+['apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· The sort() and reverse() methods both change the list itself.
+o The sort() method's default ordering is alphabetical for lists containing
+text, numerical for lists containing numbers, and so on.
+o The reverse() method inverts the positions of items in a list.
+·
+Tip Python 2.4 and later also support these built-in functions:
+o sorted(), which returns a sorted copy of the list (or other iterable).
+o reversed(), which returns an iterator object that lets you use a loop
+to process the items in the list in reverse order.
+The following examples show the use of the sort() and reverse() methods on a
+list of strings:
+>>> x.sort()
+>>> x
+['a', 'apple', 'banana', 'e', 'orange', 'p', 'r']
+>>> x.reverse()
+>>> x
+['r', 'p', 'orange', 'e', 'banana', 'apple', 'a']
+
+   
+
+List indexing and slicing
+List and tuple elements have index numbers. Indexing and slicing operations on lists and
+tuples work mostly the same way that they do with strings. Here's a quick review of how
+index numbers work. For more about indexing and slicing, see Chapter 6.
+· Working from left to right, the first element has the index 0, the next has the index
+1, and so on.
+This example shows the items at index 0 and 1 of the list x.
+115
+http://ESiti.in/forum & http://drive.esiti.in
+>>> x = ['apple', 'banana', 'pear']
+>>> x[0]
+'apple'
+>>> x[1]
+'banana'
+· Working from right to left, the first element has the index -1, the next one -2, and
+so on—but the leftmost element is still 0.
+This example shows the items at index -1 and -2.
+>>> x[-1]
+'pear'
+>>> x[-2]
+'banana'
+· The beginnings and ends of slices sit between the elements, like notebook
+dividers.
+This example shows that slice 0:1 contains just one element.
+>>> x[0:1]
+['apple']
+How indexing and slicing are different with a list
+Indexing and slicing work slightly differently with lists than they do with strings and
+tuples because lists are mutable. You can change a list by using indexing and slicing.
+With a tuple or a string, you need to give a new name to the changed object (or reassign
+the same name).
+Retrieving items from a list with slicing
+Following is a brief review of slicing syntax. You can find more information in Chapter 6.
+The syntax for slicing is as follows:
+sequence_object_name[firstindex:lastindex:step]
+These are the rules for slicing:
+· You can leave out the first slice index (but not the colon following it). It
+defaults to 0.
+· You can leave out the last slice index. It defaults to the last item of the sequence.
+To access the last sequence item in a slice, if you don't know the length of the
+sequence, leave the index blank.
+116
+http://ESiti.in/forum & http://drive.esiti.in
+· You can leave out the step and the colon preceding it. The step defaults to 1.
+· When you specify a range, it begins with the first slice index specified and
+ends before the last slice index specified. This is because slices point between
+elements. So [0:2] retrieves the first and second elements.
+· The notation [:] returns a shallow copy of the whole sequence.
+The section, "List references that unexpectedly change," later in the chapter, has
+more on shallow copying.
+The following example code creates a list of numbers and then, using slice syntax, selects
+and displays all the even-numbered items.
+>>> mylist = range(0,10)
+>>> mylist[::2]
+[0, 2, 4, 6, 8]
+Changing a list item by using its index number
+One way to change the contents of a list is to assign a new item to a particular index
+number (also called an offset). This replaces whatever is already at that index number.
+Gotcha! Assigning numbers and strings to slices
+If you assign to a slice, you must assign an iterable. This means two things:
+1. You can't assign a number to a slice.
+2. >>> mylist = [1, 2, 3, 4, 5, 6]
+3. >>> mylist [2:3] = 8
+4. Traceback (most recent call last):
+5. File "<stdin>", line 1, in ?
+6. TypeError: can only assign an iterable
+7. If you assign a string to a slice, each letter becomes a separate list item.
+8. >>> mylist[2:4] = 'three'
+9. >>> mylist
+10.[1, 2, 't', 'h', 'r', 'e', 'e', 5, 6]
+11.way around this second problem is to put the number
+One way around this second problem is to put the number or string into a list. The
+following example assumes you want to replace the numbers 3 and 4 with the strings
+‘three’ and ‘four’:
+>>> mylist = [1, 2, 3, 4, 5, 6]
+>>> mylist[2:4] = ['three', 'four']
+>>> mylist
+[1, 2, 'three', 'four', 5, 6]
+To assign a new item to a list by index number, follow these steps:
+117
+http://ESiti.in/forum & http://drive.esiti.in
+1. Type the list name and then, in square brackets, type the index number, like
+this:
+2. mylist[1]
+3. On the same line, type = and the new list element, so your line looks
+something like this:
+4. mylist[1] = new_list_element
+In the following example, the element at index 1 (the string 'eggs') is replaced with the
+string "lovely spam".
+>>> L = ['spam', 'eggs', 'ham']
+>>> L[1] = 'lovely spam'
+>>> L
+['spam', 'lovely spam', 'ham']
+You can't assign to an index number that doesn't exist. Python raises an IndexError, as
+shown here:
+>>> L[3] = 'green eggs'
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+IndexError: list assignment index out of range
+To add items to the end of a list, use the append() method:
+>>> L.append('green eggs')
+>>> L
+['spam', 'lovely spam', 'ham', 'green eggs']
+Assigning to a list with slicing
+To assign several items in a row to a list, use a range of index numbers.
+Assigning using a slice follows these rules:
+· Python first deletes the items currently assigned to those index numbers and then
+inserts the new items.
+· You don't have to assign the same number of items that you delete.
+· You must assign an iterable (see the sidebar, "Gotcha! Assigning numbers and
+strings to slices").
+To assign items to a list slice, follow these steps:
+1. Type the name of the list and, in brackets, type the slice notation, like this:
+2. L[1:4]
+3. On the same line, type = and the items you want to assign.
+118
+http://ESiti.in/forum & http://drive.esiti.in
+If you assign items from another list, your whole line might look something like
+this:
+L[1:4] = ['spam', 'spam', 'spam']
+The resulting list now looks like this:
+['spam', 'spam', 'spam', 'spam']
+The following example manipulates a list of words by using slice assignment:
+>>> L = ['spam', 'eggs', 'ham', 'green eggs']
+>>> L[:2] = ("don't", "want")
+>>> L
+["don't", 'want', 'ham', 'green eggs']
+>>> L[2:] = ("green eggs", "and", "ham")
+>>> L
+["don't", 'want', 'green eggs', 'and', 'ham']
+
+Manipulating Sequence Objects
+The following sections describe how to compare, combine, and search the contents of
+lists, tuples, and other sequence objects.
+Comparing sequence objects
+Sequence objects such as lists can be compared to other objects of the same data type. A
+comparison tells you whether the objects are equal or whether one is smaller than the
+other. Here's how it works:
+· The first items of each sequence are compared, and then the second items, and so
+on.
+· If an item inside a sequence is itself a sequence, then each of its items is
+compared against the item of the same number in the other sequence.
+· If all items of two sequences are equal, the sequences are equal.
+· If sequence 1 is the same as the beginning of sequence 2, sequence 1 is smaller
+(lesser).
+· Strings are compared based on the ASCII order of their characters. Chapter 6 has
+more information about character order.
+Table 8-1 shows the results of comparisons between sequences.
+Table 8-1: Comparisons between Sequences
+Open table as spreadsheet
+Comparison Reason
+(1, 2, 3) < (1, 2, 4), [1, 2,
+3] < [1, 2, 4]
+3 is less than 4
+'ABC' < 'C' < 'Pascal' <
+'Python'
+ASCII order of characters
+(1, 2, 4) > (1, 2, 3, 4), (1,
+2) < (1, 2, -1)
+First sequence is the same as the beginning of
+second sequence
+(1, 2, 3) == (1.0, 2.0, 3.0) Integers equal their float equivalents
+(1, 2, ('aa', 'ab')) < (1, 2,
+('abc', 'a'), 4)
+Alphabetical order of characters in sub-sequence
+(‘aa’ is smaller than ‘abc’)
+If you compare objects of different types, the types are ordered alphabetically by their
+names: Lists are smaller than strings, which are smaller than tuples. The rules for
+comparing objects of different types may change in future versions of Python.
+112
+http://ESiti.in/forum & http://drive.esiti.in
+Operating on sequence objects
+The following operators work on lists and tuples. Most of these operators also work on
+other data types:
+· Addition (+): Concatenates the contents of lists together to form a new list, or
+concatenates the contents of tuples together to form a new tuple. (You can't
+concatenate a list and a tuple.)
+· >>> [1, 2, 3] + [2, 4]
+· [1, 2, 3, 2, 4]
+· Sequence multiplication (*): Repeats the contents of a list or a tuple.
+· Augmented assignment (+= and *=): Simultaneously concatenates and assigns or
+repeats and assigns. The statement mylist += newlist is the same as mylist =
+mylist + newlist. The former works slightly faster and is easier to read.
+· Comparison (< >, ==, !=): Tests whether the contents of two or more lists or two
+or more tuples are the same.
+· Contents test (in): The keyword in determines whether a list or tuple contains
+the given element and returns True or False, as shown here:
+· >>> phone_sounds = ('beep', 'ring', 'flight of the bumblebee')
+· >>> y = 'beep' in phone_sounds
+· >>> y
+· True
+Listcraft: Methods, Indexes, and Slices
+In this section we describe important ways you can work with lists. You can turn other
+data into lists, count items in lists, sort lists in various orders, and use indexing and
+slicing to change, add, delete, and move individual list items.
+
+
+this is pl
+   
+
+Functions that work with or create lists
+The list() function creates a copy of a list. It also turns any other sequence object or
+iterable into a list. (An iterable is an object whose elements can be retrieved one at a
+time.) This example turns a tuple into a list:
+>>> mytuple = ('apple', 'orange', 'pear')
+>>> mylist = list(mytuple)
+>>> mylist
+['apple', 'orange', 'pear']
+If you feed a string to the list() function, it makes a separate list item out of each
+character, as in this example.
+>>> mystring = "Boo!"
+>>> list(mystring)
+113
+http://ESiti.in/forum & http://drive.esiti.in
+['B', 'o', 'o', '!']
+To find out the number of elements in a list, use the len() function (it also works on
+other data types).
+>>> len(mylist)
+3
+Methods of lists
+A method is like a function except that it "belongs" with a particular object, and when
+you call it, you qualify it with the name of the object. The method names are attributes of
+the object.
+List method syntax
+To call a list method, type the list name, a dot, the method name, and parentheses. In the
+parentheses, pass any arguments the method needs. (Some methods don't require or use
+arguments.) Here's an example:
+list_name.method_name(arguments)
+The most popular list methods
+The following are some of the most frequently used list methods:
+· To add an item to the end of a list, use the append() method. This method
+changes the list in place. It returns None.
+This example adds the string 'apple' to a list:
+basket = ['apple', 'banana', 'orange']
+basket.append('apple')
+· To find out the number of times a value occurs in a list, use the count( value )
+method.
+This example counts the number of times the string 'apple' appears.
+>>> basket.count('apple')
+2
+· To add to a list the contents of another sequence object or iterable (an object
+whose elements can be retrieved one at a time), use the extend() method. If the
+iterable is a string, each character is added individually.
+This example adds each character of the string 'pear'.
+114
+http://ESiti.in/forum & http://drive.esiti.in
+>>> x = ['apple', 'apple', 'banana', 'orange']
+>>> x.extend('pear')
+>>> x
+['apple', 'apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· To delete the first occurrence of an item in a list, use the remove() method. It
+raises a ValueError if the item isn't found.
+This example removes the first 'apple' string.
+>>> x.remove('apple')
+>>> x
+['apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· The sort() and reverse() methods both change the list itself.
+o The sort() method's default ordering is alphabetical for lists containing
+text, numerical for lists containing numbers, and so on.
+o The reverse() method inverts the positions of items in a list.
+·
+Tip Python 2.4 and later also support these built-in functions:
+o sorted(), which returns a sorted copy of the list (or other iterable).
+o reversed(), which returns an iterator object that lets you use a loop
+to process the items in the list in reverse order.
+The following examples show the use of the sort() and reverse() methods on a
+list of strings:
+>>> x.sort()
+>>> x
+['a', 'apple', 'banana', 'e', 'orange', 'p', 'r']
+>>> x.reverse()
+>>> x
+['r', 'p', 'orange', 'e', 'banana', 'apple', 'a']
+
+   
+
+List indexing and slicing
+List and tuple elements have index numbers. Indexing and slicing operations on lists and
+tuples work mostly the same way that they do with strings. Here's a quick review of how
+index numbers work. For more about indexing and slicing, see Chapter 6.
+· Working from left to right, the first element has the index 0, the next has the index
+1, and so on.
+This example shows the items at index 0 and 1 of the list x.
+115
+http://ESiti.in/forum & http://drive.esiti.in
+>>> x = ['apple', 'banana', 'pear']
+>>> x[0]
+'apple'
+>>> x[1]
+'banana'
+· Working from right to left, the first element has the index -1, the next one -2, and
+so on—but the leftmost element is still 0.
+This example shows the items at index -1 and -2.
+>>> x[-1]
+'pear'
+>>> x[-2]
+'banana'
+· The beginnings and ends of slices sit between the elements, like notebook
+dividers.
+This example shows that slice 0:1 contains just one element.
+>>> x[0:1]
+['apple']
+How indexing and slicing are different with a list
+Indexing and slicing work slightly differently with lists than they do with strings and
+tuples because lists are mutable. You can change a list by using indexing and slicing.
+With a tuple or a string, you need to give a new name to the changed object (or reassign
+the same name).
+Retrieving items from a list with slicing
+Following is a brief review of slicing syntax. You can find more information in Chapter 6.
+The syntax for slicing is as follows:
+sequence_object_name[firstindex:lastindex:step]
+These are the rules for slicing:
+· You can leave out the first slice index (but not the colon following it). It
+defaults to 0.
+· You can leave out the last slice index. It defaults to the last item of the sequence.
+To access the last sequence item in a slice, if you don't know the length of the
+sequence, leave the index blank.
+116
+http://ESiti.in/forum & http://drive.esiti.in
+· You can leave out the step and the colon preceding it. The step defaults to 1.
+· When you specify a range, it begins with the first slice index specified and
+ends before the last slice index specified. This is because slices point between
+elements. So [0:2] retrieves the first and second elements.
+· The notation [:] returns a shallow copy of the whole sequence.
+The section, "List references that unexpectedly change," later in the chapter, has
+more on shallow copying.
+The following example code creates a list of numbers and then, using slice syntax, selects
+and displays all the even-numbered items.
+>>> mylist = range(0,10)
+>>> mylist[::2]
+[0, 2, 4, 6, 8]
+Changing a list item by using its index number
+One way to change the contents of a list is to assign a new item to a particular index
+number (also called an offset). This replaces whatever is already at that index number.
+Gotcha! Assigning numbers and strings to slices
+If you assign to a slice, you must assign an iterable. This means two things:
+1. You can't assign a number to a slice.
+2. >>> mylist = [1, 2, 3, 4, 5, 6]
+3. >>> mylist [2:3] = 8
+4. Traceback (most recent call last):
+5. File "<stdin>", line 1, in ?
+6. TypeError: can only assign an iterable
+7. If you assign a string to a slice, each letter becomes a separate list item.
+8. >>> mylist[2:4] = 'three'
+9. >>> mylist
+10.[1, 2, 't', 'h', 'r', 'e', 'e', 5, 6]
+11.way around this second problem is to put the number
+One way around this second problem is to put the number or string into a list. The
+following example assumes you want to replace the numbers 3 and 4 with the strings
+‘three’ and ‘four’:
+>>> mylist = [1, 2, 3, 4, 5, 6]
+>>> mylist[2:4] = ['three', 'four']
+>>> mylist
+[1, 2, 'three', 'four', 5, 6]
+To assign a new item to a list by index number, follow these steps:
+117
+http://ESiti.in/forum & http://drive.esiti.in
+1. Type the list name and then, in square brackets, type the index number, like
+this:
+2. mylist[1]
+3. On the same line, type = and the new list element, so your line looks
+something like this:
+4. mylist[1] = new_list_element
+In the following example, the element at index 1 (the string 'eggs') is replaced with the
+string "lovely spam".
+>>> L = ['spam', 'eggs', 'ham']
+>>> L[1] = 'lovely spam'
+>>> L
+['spam', 'lovely spam', 'ham']
+You can't assign to an index number that doesn't exist. Python raises an IndexError, as
+shown here:
+>>> L[3] = 'green eggs'
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+IndexError: list assignment index out of range
+To add items to the end of a list, use the append() method:
+>>> L.append('green eggs')
+>>> L
+['spam', 'lovely spam', 'ham', 'green eggs']
+Assigning to a list with slicing
+To assign several items in a row to a list, use a range of index numbers.
+Assigning using a slice follows these rules:
+· Python first deletes the items currently assigned to those index numbers and then
+inserts the new items.
+· You don't have to assign the same number of items that you delete.
+· You must assign an iterable (see the sidebar, "Gotcha! Assigning numbers and
+strings to slices").
+To assign items to a list slice, follow these steps:
+1. Type the name of the list and, in brackets, type the slice notation, like this:
+2. L[1:4]
+3. On the same line, type = and the items you want to assign.
+118
+http://ESiti.in/forum & http://drive.esiti.in
+If you assign items from another list, your whole line might look something like
+this:
+L[1:4] = ['spam', 'spam', 'spam']
+The resulting list now looks like this:
+['spam', 'spam', 'spam', 'spam']
+The following example manipulates a list of words by using slice assignment:
+>>> L = ['spam', 'eggs', 'ham', 'green eggs']
+>>> L[:2] = ("don't", "want")
+>>> L
+["don't", 'want', 'ham', 'green eggs']
+>>> L[2:] = ("green eggs", "and", "ham")
+>>> L
+["don't", 'want', 'green eggs', 'and', 'ham']
+
+
+Manipulating Sequence Objects
+The following sections describe how to compare, combine, and search the contents of
+lists, tuples, and other sequence objects.
+Comparing sequence objects
+Sequence objects such as lists can be compared to other objects of the same data type. A
+comparison tells you whether the objects are equal or whether one is smaller than the
+other. Here's how it works:
+· The first items of each sequence are compared, and then the second items, and so
+on.
+· If an item inside a sequence is itself a sequence, then each of its items is
+compared against the item of the same number in the other sequence.
+· If all items of two sequences are equal, the sequences are equal.
+· If sequence 1 is the same as the beginning of sequence 2, sequence 1 is smaller
+(lesser).
+· Strings are compared based on the ASCII order of their characters. Chapter 6 has
+more information about character order.
+Table 8-1 shows the results of comparisons between sequences.
+Table 8-1: Comparisons between Sequences
+Open table as spreadsheet
+Comparison Reason
+(1, 2, 3) < (1, 2, 4), [1, 2,
+3] < [1, 2, 4]
+3 is less than 4
+'ABC' < 'C' < 'Pascal' <
+'Python'
+ASCII order of characters
+(1, 2, 4) > (1, 2, 3, 4), (1,
+2) < (1, 2, -1)
+First sequence is the same as the beginning of
+second sequence
+(1, 2, 3) == (1.0, 2.0, 3.0) Integers equal their float equivalents
+(1, 2, ('aa', 'ab')) < (1, 2,
+('abc', 'a'), 4)
+Alphabetical order of characters in sub-sequence
+(‘aa’ is smaller than ‘abc’)
+If you compare objects of different types, the types are ordered alphabetically by their
+names: Lists are smaller than strings, which are smaller than tuples. The rules for
+comparing objects of different types may change in future versions of Python.
+112
+http://ESiti.in/forum & http://drive.esiti.in
+Operating on sequence objects
+The following operators work on lists and tuples. Most of these operators also work on
+other data types:
+· Addition (+): Concatenates the contents of lists together to form a new list, or
+concatenates the contents of tuples together to form a new tuple. (You can't
+concatenate a list and a tuple.)
+· >>> [1, 2, 3] + [2, 4]
+· [1, 2, 3, 2, 4]
+· Sequence multiplication (*): Repeats the contents of a list or a tuple.
+· Augmented assignment (+= and *=): Simultaneously concatenates and assigns or
+repeats and assigns. The statement mylist += newlist is the same as mylist =
+mylist + newlist. The former works slightly faster and is easier to read.
+· Comparison (< >, ==, !=): Tests whether the contents of two or more lists or two
+or more tuples are the same.
+· Contents test (in): The keyword in determines whether a list or tuple contains
+the given element and returns True or False, as shown here:
+· >>> phone_sounds = ('beep', 'ring', 'flight of the bumblebee')
+· >>> y = 'beep' in phone_sounds
+· >>> y
+· True
+Listcraft: Methods, Indexes, and Slices
+In this section we describe important ways you can work with lists. You can turn other
+data into lists, count items in lists, sort lists in various orders, and use indexing and
+slicing to change, add, delete, and move individual list items.
+
+
+this is pl
+   
+
+Functions that work with or create lists
+The list() function creates a copy of a list. It also turns any other sequence object or
+iterable into a list. (An iterable is an object whose elements can be retrieved one at a
+time.) This example turns a tuple into a list:
+>>> mytuple = ('apple', 'orange', 'pear')
+>>> mylist = list(mytuple)
+>>> mylist
+['apple', 'orange', 'pear']
+If you feed a string to the list() function, it makes a separate list item out of each
+character, as in this example.
+>>> mystring = "Boo!"
+>>> list(mystring)
+113
+http://ESiti.in/forum & http://drive.esiti.in
+['B', 'o', 'o', '!']
+To find out the number of elements in a list, use the len() function (it also works on
+other data types).
+>>> len(mylist)
+3
+Methods of lists
+A method is like a function except that it "belongs" with a particular object, and when
+you call it, you qualify it with the name of the object. The method names are attributes of
+the object.
+List method syntax
+To call a list method, type the list name, a dot, the method name, and parentheses. In the
+parentheses, pass any arguments the method needs. (Some methods don't require or use
+arguments.) Here's an example:
+list_name.method_name(arguments)
+The most popular list methods
+The following are some of the most frequently used list methods:
+· To add an item to the end of a list, use the append() method. This method
+changes the list in place. It returns None.
+This example adds the string 'apple' to a list:
+basket = ['apple', 'banana', 'orange']
+basket.append('apple')
+· To find out the number of times a value occurs in a list, use the count( value )
+method.
+This example counts the number of times the string 'apple' appears.
+>>> basket.count('apple')
+2
+· To add to a list the contents of another sequence object or iterable (an object
+whose elements can be retrieved one at a time), use the extend() method. If the
+iterable is a string, each character is added individually.
+This example adds each character of the string 'pear'.
+114
+http://ESiti.in/forum & http://drive.esiti.in
+>>> x = ['apple', 'apple', 'banana', 'orange']
+>>> x.extend('pear')
+>>> x
+['apple', 'apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· To delete the first occurrence of an item in a list, use the remove() method. It
+raises a ValueError if the item isn't found.
+This example removes the first 'apple' string.
+>>> x.remove('apple')
+>>> x
+['apple', 'banana', 'orange', 'p', 'e', 'a', 'r']
+· The sort() and reverse() methods both change the list itself.
+o The sort() method's default ordering is alphabetical for lists containing
+text, numerical for lists containing numbers, and so on.
+o The reverse() method inverts the positions of items in a list.
+·
+Tip Python 2.4 and later also support these built-in functions:
+o sorted(), which returns a sorted copy of the list (or other iterable).
+o reversed(), which returns an iterator object that lets you use a loop
+to process the items in the list in reverse order.
+The following examples show the use of the sort() and reverse() methods on a
+list of strings:
+>>> x.sort()
+>>> x
+['a', 'apple', 'banana', 'e', 'orange', 'p', 'r']
+>>> x.reverse()
+>>> x
+['r', 'p', 'orange', 'e', 'banana', 'apple', 'a']
+
+undefined

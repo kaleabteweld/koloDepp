@@ -1,0 +1,145 @@
+body{
+    height: 100vh;
+    background-color: rgb(230, 230, 230) !important;
+    
+}
+@media all and (max-width: 500px) { 
+    #a{
+        width: 100% !important;
+        padding: 20px !important;
+        border: transparent !important;
+    }
+    #nav > #home{
+        background-color: darkgrey !important;
+        border-radius: 11rem; 
+    }
+    #a #other{
+
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    #a #other > button{
+
+        flex: 1;
+        margin-top: 10px;
+    }
+    #nav{
+        margin-bottom: 5vh !important;
+    }
+    #mask #text{
+        width: auto !important;
+    }
+    #head{
+
+        background-size: 200% 100% !important;
+    }
+}
+
+#Head{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+#mask{
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    z-index: 1;
+
+    background: rgba(79, 80, 80, 0.5);
+
+}
+/* head */
+#head{
+    height: 100%;
+    width: 100%;
+
+    background-image: url('/koloDepp/IMG/simiple_pic/0001\ \(21\).jpg');
+    background-position: center;
+    background-size: 100% 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    z-index: 0;
+    
+}
+
+
+#mask #nav{
+
+
+    border-radius: 30px;
+    width: 80vw;
+
+
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+    background-color: rgb(230, 230, 230) !important;
+}
+
+/* nav text */
+#mask #nav > a{
+
+    font-weight: bolder;
+    font-size: large;
+}
+#mask #nav #navbarResponsive a{   
+
+    font-weight: bolder;
+    font-size: small;
+}
+
+
+
+#mask #text{
+
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 34px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-height: 75%;
+    overflow-y: scroll;
+
+}
+
+#mask #text > img{   
+
+    width: 150px;
+    height: 120px;
+    border: solid 2px white;
+    border-radius: 50%;
+
+    margin-bottom: 30px;
+}
+
+
+#mask #text > h2{   
+
+    font-weight: bolder;
+    font-size: x-large;
+    color: whitesmoke;
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+#mask #text > p{   
+
+    font-weight: bolder;
+    font-size: medium;
+    color: whitesmoke;
+
+    text-align: center;
+}

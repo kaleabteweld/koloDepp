@@ -1,0 +1,67 @@
+<?php
+
+    session_start();
+
+    //require("../php/cheak.php");
+
+   
+
+    if((isset($_SESSION))){
+
+        header("Location : ../koloDepp/log.html");
+    }
+
+    echo "hi";
+    //echo $_SESSION['log_in'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="../koloDepp/css/Main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../koloDepp/css/python.css"> -->
+    <link rel="stylesheet" type="text/css" href="../koloDepp/css/Comments.css">
+    <link rel="stylesheet" type="text/css" href="../koloDepp/css/main_foot.css">
+    <link rel="stylesheet" type="text/css" href="../koloDepp/css/into.css">
+    <link rel="stylesheet" type="text/css" href="../koloDepp/css/C.css">
+
+    <link href="../koloDepp/Thid Party/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <title> kolo Deep Admin </title>
+</head>
+<body>
+    
+    <div id="root">
+
+        <div id="sied">
+
+            <a href="#">Inbox <span class="badge">42</span></a>
+
+            <button class="btn btn-primary" type="button">
+            Messages <span class="badge">4</span>
+            </button>
+
+        </div>
+        <div id="main"
+        
+        ></div>
+    </div>
+
+<script src="../koloDepp/Thid Party/jquery-3.4.1.js"></script>
+<script src="../koloDepp/Thid Party/bootstrap-4.3.1-dist/js/bootstrap.js"></script>
+
+
+
+<script src="../koloDepp/js/admin.js"></script>
+
+
+
+
+
+
+</body>
+</html>
